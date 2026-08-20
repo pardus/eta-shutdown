@@ -36,7 +36,7 @@ def check_time(hour, minute, delay):
 
 
 def check_x11(disp):
-    sp = subprocess.run(["env", "DISPLAY={}".format(disp), "xset", "-q"], capture_output=True)
+    sp = subprocess.run(["/usr/bin/env", "DISPLAY={}".format(disp), "/usr/bin/xset", "-q"], capture_output=True)
     return sp.returncode == 0
 
 ret = None
@@ -44,9 +44,9 @@ def send_notify(message, yes_msg, no_msg, timeout):
     global ret
     def send_notify_disp(disp):
         global ret
-        cmd = ["timeout", str(timeout),
-            "env", "DISPLAY={}".format(disp),
-            "notify-send", "-w",
+        cmd = ["/usr/bin/timeout", str(timeout),
+            "/usr/bin/env", "DISPLAY={}".format(disp),
+            "/usr/bin/notify-send", "-w",
             "-A", "true={}".format(yes_msg),
             "-A", "false={}".format(no_msg),
             "-t", str(timeout*1000), message]
@@ -105,9 +105,9 @@ def service():
         print("req_idle:", req_idle)
         if idle_time > req_idle:
             if mode == "shutdown":
-                os.system("poweroff -f")
+                subprocess.run(["/usr/bin/systemctl", "poweroff"])
             elif mode == "suspend":
-                os.system("systemctl suspend")
+                subprocess.run(["/usr/bin/systemctl", "suspend"])
     # auto shutdown
     if ignore_auto:
         print("Ignore auto shutdown")
@@ -120,7 +120,7 @@ def service():
                     message_shown = False
         if check_time(auto_hour, auto_minute, delay):
             print("auto shutdown")
-            os.system("poweroff -f")
+            subprocess.run(["/usr/bin/systemctl", "poweroff"])
 
 if __name__ == "__main__":
     send_notify(sys.argv[1], "Yes", "No", 10)

@@ -4,7 +4,7 @@ import sys
 import subprocess
 
 if os.getuid() != 0:
-    subprocess.run(["pkexec", __file__])
+    subprocess.run(["/usr/bin/pkexec", __file__])
 
 import ctypes
 libc = ctypes.cdll['libc.so.6']
