@@ -20,6 +20,8 @@ from gi.repository import Gtk, Gio, GLib
 
 ACTION=os.path.dirname(os.path.abspath(__file__))+"/actions.py"
 
+from utils import get_system_capabilities
+
 class ShutdownMenu:
     def __init__(self, application):
         window = Gtk.Window()
@@ -29,19 +31,30 @@ class ShutdownMenu:
         window.set_position(Gtk.WindowPosition.CENTER)
         window.set_title(_("ETA Shutdown"))
 
+        cap = get_system_capabilities()
+
         box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         box.set_spacing(18)
-        box.pack_start(self.create_button("eta-shutdown-poweroff", _("Power Off"),
-            ["dbus-send", "--system", "--print-reply",
-             "--dest=org.freedesktop.login1", "/org/freedesktop/login1",
-             "org.freedesktop.login1.Manager.PowerOff", "boolean:true"
-            ]), True, True, 0)
-        box.pack_start(self.create_button("eta-shutdown-reboot", _("Restart"),
-            ["dbus-send", "--system", "--print-reply",
-             "--dest=org.freedesktop.login1", "/org/freedesktop/login1",
-             "org.freedesktop.login1.Manager.Reboot", "boolean:true"
-            ]), True, True, 0)
-        box.pack_start(self.create_button("eta-shutdown-force-poweroff", _("Force Power Off"), ["pkexec", ACTION, "poweroff"]), True, True, 0)
+        if cap["CanPowerOff"]:
+            box.pack_start(self.create_button("eta-shutdown-poweroff", _("Power Off"),
+                ["dbus-send", "--system", "--print-reply",
+                 "--dest=org.freedesktop.login1", "/org/freedesktop/login1",
+                 "org.freedesktop.login1.Manager.PowerOff", "boolean:true"
+                ]), True, True, 0)
+        if cap["CanReboot"]:
+            box.pack_start(self.create_button("eta-shutdown-reboot", _("Restart"),
+                ["dbus-send", "--system", "--print-reply",
+                 "--dest=org.freedesktop.login1", "/org/freedesktop/login1",
+                 "org.freedesktop.login1.Manager.Reboot", "boolean:true"
+                ]), True, True, 0)
+        if cap["CanSuspend"]:
+            box.pack_start(self.create_button("eta-shutdown-suspend", _("Suspend"),
+                ["dbus-send", "--system", "--print-reply",
+                 "--dest=org.freedesktop.login1", "/org/freedesktop/login1",
+                 "org.freedesktop.login1.Manager.Suspend", "boolean:true"
+                ]), True, True, 0)
+        if cap["CanPowerOff"]:
+            box.pack_start(self.create_button("eta-shutdown-force-poweroff", _("Force Power Off"), ["pkexec", ACTION, "poweroff"]), True, True, 0)
         box.pack_start(self.create_button("eta-shutdown-logout", _("Log Out"), ["pkill","-KILL", "-u", os.environ["USER"]]), True, True, 0)
 
         window.add(box)
