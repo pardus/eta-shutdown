@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-30 14:51+0300\n"
+"PO-Revision-Date: 2026-09-11 10:36+0100\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
+"Language-Team: \n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: ui/MainWindow.glade:76
+msgid "Static Shutdown Mode"
+msgstr "Modo de encerrar estático"
+
+#: ui/MainWindow.glade:118
+msgid "Set Time (24h format) : "
+msgstr "Definir hora (formato de 24 horas): "
+
+#: ui/MainWindow.glade:323
+msgid "Countdown Mode"
+msgstr "Modo de contagem decrescente"
+
+#: ui/MainWindow.glade:365
+msgid "Set Countdown"
+msgstr "Definir contagem decrescente"
+
+#: ui/MainWindow.glade:556
+msgid "Select Action"
+msgstr "Selecionar ação"
+
+#: ui/MainWindow.glade:571
+msgid "Suspend"
+msgstr "Suspender"
+
+#: ui/MainWindow.glade:588
+msgid "Shutdown"
+msgstr "Encerrar"
+
+#: ui/MainWindow.glade:632
+msgid "Save"
+msgstr "Guardar"
+
+#: ui/MainWindow.glade:657
+msgid "Status: "
+msgstr "Estado: "
+
+#: ui/MainWindow.glade:672 src/MainWindow.py:110
+msgid "No settings"
+msgstr "Sem definições"
+
+#: ui/MainWindow.glade:716
+msgid "ETA Shutdown Timer"
+msgstr "Temporizador de encerramento ETA"
+
+#: src/MainWindow.py:106
+msgid "This mode may not work on some boards."
+msgstr "Este modo poderá não funcionar em algumas placas."
+
+#: src/MainWindow.py:107
+msgid "Auto shutdown mode active"
+msgstr "Modo de encerramento automático ativo"
+
+#: src/MainWindow.py:108
+msgid "Timed suspend mode active"
+msgstr "Modo de suspensão temporizada ativo"
+
+#: src/MainWindow.py:109
+msgid "Timed shutdown mode active"
+msgstr "Modo de encerramento temporizado ativo"
+
+#: src/ShutdownMenu.py:29
+msgid "ETA Shutdown"
+msgstr "Encerrar ETA"
+
+#: src/ShutdownMenu.py:33
+msgid "Force Power Off"
+msgstr "Forçar o desligar"
+
+#: src/ShutdownMenu.py:34
+msgid "Power Off"
+msgstr "Desligar"
+
+#: src/ShutdownMenu.py:39
+msgid "Restart"
+msgstr "Reiniciar"
+
+#: src/ShutdownMenu.py:40
+msgid "Log Out"
+msgstr "Terminar sessão"

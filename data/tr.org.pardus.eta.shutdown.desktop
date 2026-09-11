@@ -1,9 +1,12 @@
 [Desktop Entry]
 Name=ETA Shutdown Settings
+Name[pt]=Definições de encerrar ETA
 Name[tr]=ETA Kapatma Ayarları
 GenericName=Shutdown
+GenericName[pt]=Encerrar
 GenericName[tr]=Kapat
 Comment=Etap automatic shutdown settings
+Comment[pt]=Definições de encerramento automático Etap
 Comment[tr]=Etap otomatik kapatma ayarları
 Exec=eta-shutdown
 Icon=eta-shutdown-settings

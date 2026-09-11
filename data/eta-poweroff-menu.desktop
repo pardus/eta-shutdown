@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Power Off the System
+Name[pt]=Desligar o sistema
 Name[tr]=Sistemi Kapat
 Exec=eta-shutdown --menu
 Icon=eta-shutdown
