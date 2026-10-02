@@ -231,7 +231,12 @@ class MainWindow:
         with open(CONFIG_FILE, "w") as file:
             config.write(file)
 
-        subprocess.run(["systemctl", "restart", "eta-shutdown"])
+        subprocess.run(["systemctl", "stop", "eta-shutdown"])
+        if not self.ui_auto_shutdown_switch.get_active() and not self.ui_timed_switch.get_active():
+            subprocess.run(["systemctl", "disable", "eta-shutdown"])
+        else:
+            subprocess.run(["systemctl", "enable", "eta-shutdown"])
+            subprocess.run(["systemctl", "start", "eta-shutdown"])
 
     def on_ui_show_settings(self):
         config = self.load_or_create_eta_shutdown_config()
