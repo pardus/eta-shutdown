@@ -31,7 +31,7 @@ config.read(CONFIG_FILE)
 def check_time(hour, minute, delay):
     now = datetime.now()
     nex = datetime(now.year, now.month, now.day, hour, minute)
-    print(now, nex, delay)
+    log("Now:", now, "Next:", nex, "Delay:", delay)
     return nex.timestamp() - delay - now.timestamp() < 0
 
 
@@ -64,7 +64,7 @@ def send_notify(message, yes_msg, no_msg, timeout):
         th.start()
     for th in ths:
         th.join()
-    print(ret)
+    log("X11:",ret)
     return ret
 
 message_shown = False
@@ -98,11 +98,11 @@ def service():
             idle = get_idle_time(f":{display[1:]}")
             if idle_time < idle or idle_time < 0:
                 idle_time = idle
-        print("idle_time: {}".format(idle_time))
+        log("idle_time: {}".format(idle_time))
         req_idle = (hour*3600 + minute * 60)*1000
         if req_idle < 5*60*1000:
             req_idle = 5*60*1000
-        print("req_idle:", req_idle)
+        log("req_idle:", req_idle)
         if idle_time > req_idle:
             if mode == "shutdown":
                 os.system("poweroff -f")
@@ -110,7 +110,7 @@ def service():
                 os.system("systemctl suspend")
     # auto shutdown
     if ignore_auto:
-        print("Ignore auto shutdown")
+        log("Ignore auto shutdown")
     elif config["AUTO_SHUTDOWN"]["enabled"].lower() == "true":
         if check_time(auto_hour, auto_minute, (600)):
             if not message_shown:
@@ -119,7 +119,7 @@ def service():
                     delay -= 60*60
                     message_shown = False
         if check_time(auto_hour, auto_minute, delay):
-            print("auto shutdown")
+            log("auto shutdown")
             os.system("poweroff -f")
 
 if __name__ == "__main__":
